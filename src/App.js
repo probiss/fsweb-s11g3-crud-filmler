@@ -39,7 +39,13 @@ const App = (props) => {
   }
 
   const addToFavorites = (movie) => {
-
+    //   localStorage.setItem("favoriteMovies", JSON.stringify([...favoriteMovies,movie])
+    //   );
+    if (!favoriteMovies.find((mov) => mov.id === movie.id)) {
+      setFavoriteMovies([...favoriteMovies, movie]);
+    } else {
+      console.log("bulundu!");
+    }
   }
 
   return (
@@ -63,7 +69,7 @@ const App = (props) => {
             </Route>
 
             <Route path="/movies/:id">
-              <Movie deleteMovie={deleteMovie}/>
+              <Movie deleteMovie={deleteMovie} addToFavorites={addToFavorites}/>
             </Route>
 
             <Route path="/movies">
