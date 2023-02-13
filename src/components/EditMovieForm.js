@@ -6,6 +6,7 @@ import axios from "axios";
 
 const EditMovieForm = (props) => {
   const { push } = useHistory();
+  const { id } = useParams();
 
   const { setMovies } = props;
   const [movie, setMovie] = useState({
@@ -15,6 +16,13 @@ const EditMovieForm = (props) => {
     metascore: 0,
     description: "",
   });
+
+  useEffect(() => {
+    axios
+    .get(`http://localhost:9000/api/movies/${id}`)
+    .then((res) => setMovie({...res.data}))
+    .catch((err) => console.log(err));
+  },[id]);
 
   const handleChange = (e) => {
     setMovie({
@@ -93,14 +101,14 @@ const EditMovieForm = (props) => {
         </div>
 
         <div className="px-5 py-4 border-t border-zinc-200 flex justify-end gap-2">
-          <Link to={`/movies/1`} className="myButton bg-zinc-500">
+          <Link to={`/movies/${id}`} className="myButton bg-zinc-500">
             Vazgeç
           </Link>
           <button
             type="submit"
             className="myButton bg-green-700 hover:bg-green-600"
           >
-            Ekle
+            Değişiklikleri Kaydet
           </button>
         </div>
       </form>
