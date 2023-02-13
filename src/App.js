@@ -14,6 +14,7 @@ import axios from 'axios';
 const App = (props) => {
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
   const {push} = useHistory();
 
   useEffect(() => {
@@ -49,8 +50,8 @@ const App = (props) => {
   }
 
   return (
-    <div>
-      <nav className="bg-zinc-800 px-6 py-3">
+    <div className={darkMode && `dark`} >
+      <nav className=" dark:bg-white bg-zinc-800 px-6 py-3 "   >
         <h1 className="text-xl text-white">HTTP / CRUD Film Projesi</h1>
       </nav>
 
